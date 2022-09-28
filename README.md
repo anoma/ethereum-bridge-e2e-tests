@@ -1,8 +1,6 @@
-# wasm-workspace
+# ethereum-bridge-e2e-tests
 
-> :warning: This repo is experimental and shouldn't be relied upon!
-
-An example Cargo workspace for building wasms for use with [Anoma](https://github.com/anoma/anoma).
+A workspace for end-to-end tests for Namada's Ethereum bridge.
 
 ## Tests
 
@@ -14,11 +12,11 @@ cargo test
 
 ### End-to-end
 
-End-to-end tests are binaries under `crates/e2e_tests/src/bin`. It should be possible to run them against any Anoma chain.
+End-to-end tests are binaries under `crates/e2e_tests/src/bin`. It should be possible to run them against any Namada chain which is running the Ethereum bridge in the appropriate mode. e.g. some tests may require validators to be exposing an endpoint for direct submission of fake Ethereum bridge events, while other tests may work against a Namada chain and a real EVM chain which has the bridge deployed.
 
 #### Running locally using Docker Compose
 
-> :warning: This method of running locally may not work on Apple Silicon.
+> :warning: This method of running locally may work very slowly on Apple Silicon, due to emulation of the `linux/amd64` architecture
 
 To run them against a preconfigured network:
 
