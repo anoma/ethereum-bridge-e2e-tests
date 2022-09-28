@@ -1,0 +1,21 @@
+[target.wasm32-unknown-unknown]
+rustflags = [
+	"-Z", "strip=symbols",
+]
+
+[target.aarch64-apple-darwin]
+# avoids linker errors - https://stackoverflow.com/a/69129557
+rustflags = [
+  "-C", "link-arg=-undefined",
+  "-C", "link-arg=dynamic_lookup",
+]
+
+[target.x86_64-apple-darwin]
+# avoids linker errors - https://stackoverflow.com/a/69129557
+rustflags = [
+  "-C", "link-arg=-undefined",
+  "-C", "link-arg=dynamic_lookup",
+]
+
+[target.x86_64-unknown-linux-musl]
+linker = "rust-lld"
