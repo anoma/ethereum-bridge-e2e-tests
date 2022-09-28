@@ -245,6 +245,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a"
 
 [[package]]
+name = "bitvec"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1bc2832c24239b0141d5674bb9174f9d68a8b5b3f2753311927c172ca46f7e9c"
+dependencies = [
+ "funty",
+ "radium",
+ "tap",
+ "wyz",
+]
+
+[[package]]
 name = "blake3"
 version = "1.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -299,7 +311,7 @@ source = "git+https://github.com/heliaxdev/borsh-rs.git?rev=cd5223e5103c4f139e0c
 dependencies = [
  "borsh-derive-internal",
  "borsh-schema-derive-internal",
- "proc-macro-crate",
+ "proc-macro-crate 0.1.5",
  "proc-macro2",
  "syn",
 ]
@@ -329,6 +341,12 @@ name = "bumpalo"
 version = "3.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c1ad822118d20d2c234f427000d5acc36eabe1e29a348c89b63dd60b13f28e5d"
+
+[[package]]
+name = "byte-slice-cast"
+version = "1.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "87c5fdd0166095e1d463fc6cc01aa8ce547ad77a4e84d42eb6762b084e28067e"
 
 [[package]]
 name = "bytecheck"
@@ -723,7 +741,7 @@ name = "e2e_tests"
 version = "0.0.0"
 dependencies = [
  "eyre",
- "namada",
+ "namada 0.7.1 (git+https://github.com/anoma/namada?rev=08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7)",
  "rand",
  "shared",
  "test_runner",
@@ -843,6 +861,50 @@ dependencies = [
 ]
 
 [[package]]
+name = "ethabi"
+version = "17.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e4966fba78396ff92db3b817ee71143eccd98acf0f876b8d600e585a670c5d1b"
+dependencies = [
+ "ethereum-types",
+ "hex",
+ "once_cell",
+ "regex",
+ "serde",
+ "serde_json",
+ "sha3 0.10.5",
+ "thiserror",
+ "uint",
+]
+
+[[package]]
+name = "ethbloom"
+version = "0.12.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "11da94e443c60508eb62cf256243a64da87304c2802ac2528847f79d750007ef"
+dependencies = [
+ "crunchy",
+ "fixed-hash",
+ "impl-rlp",
+ "impl-serde",
+ "tiny-keccak",
+]
+
+[[package]]
+name = "ethereum-types"
+version = "0.13.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b2827b94c556145446fcce834ca86b7abf0c39a805883fe20e72c5bfdb5a0dc6"
+dependencies = [
+ "ethbloom",
+ "fixed-hash",
+ "impl-rlp",
+ "impl-serde",
+ "primitive-types",
+ "uint",
+]
+
+[[package]]
 name = "eyre"
 version = "0.6.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -891,6 +953,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "fixed-hash"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cfcf0ed7fe52a17a03854ec54a9f76d6d84508d1c0e66bc1793301c73fc8493c"
+dependencies = [
+ "byteorder",
+ "rand",
+ "rustc-hex",
+ "static_assertions",
+]
+
+[[package]]
 name = "fixedbitset"
 version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -926,6 +1000,12 @@ name = "fs_extra"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2022715d62ab30faffd124d40b76f4134a550a87792276512b18d63272333394"
+
+[[package]]
+name = "funty"
+version = "2.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e6d5a32815ae3f33302d95fdcb2ce17862f8c65363dcfd29360480ba1001fc9c"
 
 [[package]]
 name = "futures"
@@ -1201,12 +1281,12 @@ dependencies = [
 [[package]]
 name = "ibc"
 version = "0.12.0"
-source = "git+https://github.com/heliaxdev/ibc-rs?rev=30b3495ac56c6c37c99bc69ef9f2e84c3309c6cc#30b3495ac56c6c37c99bc69ef9f2e84c3309c6cc"
+source = "git+https://github.com/heliaxdev/ibc-rs?branch=bat/abciplus#99a761657a51f6e5f074f3217426903e53632934"
 dependencies = [
  "bytes",
  "derive_more",
  "flex-error",
- "ibc-proto",
+ "ibc-proto 0.16.0 (git+https://github.com/heliaxdev/ibc-rs?branch=bat/abciplus)",
  "ics23",
  "num-traits",
  "prost",
@@ -1217,12 +1297,51 @@ dependencies = [
  "serde_json",
  "sha2 0.10.6",
  "subtle-encoding",
- "tendermint",
- "tendermint-light-client-verifier",
- "tendermint-proto",
+ "tendermint 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus)",
+ "tendermint-light-client-verifier 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus)",
+ "tendermint-proto 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus)",
  "tendermint-testgen",
  "time 0.3.14",
  "tracing",
+]
+
+[[package]]
+name = "ibc"
+version = "0.12.0"
+source = "git+https://github.com/heliaxdev/ibc-rs?rev=30b3495ac56c6c37c99bc69ef9f2e84c3309c6cc#30b3495ac56c6c37c99bc69ef9f2e84c3309c6cc"
+dependencies = [
+ "bytes",
+ "derive_more",
+ "flex-error",
+ "ibc-proto 0.16.0 (git+https://github.com/heliaxdev/ibc-rs?rev=30b3495ac56c6c37c99bc69ef9f2e84c3309c6cc)",
+ "ics23",
+ "num-traits",
+ "prost",
+ "prost-types",
+ "safe-regex",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "sha2 0.10.6",
+ "subtle-encoding",
+ "tendermint 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?rev=95c52476bc37927218374f94ac8e2a19bd35bec9)",
+ "tendermint-light-client-verifier 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?rev=95c52476bc37927218374f94ac8e2a19bd35bec9)",
+ "tendermint-proto 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?rev=95c52476bc37927218374f94ac8e2a19bd35bec9)",
+ "time 0.3.14",
+ "tracing",
+]
+
+[[package]]
+name = "ibc-proto"
+version = "0.16.0"
+source = "git+https://github.com/heliaxdev/ibc-rs?branch=bat/abciplus#99a761657a51f6e5f074f3217426903e53632934"
+dependencies = [
+ "bytes",
+ "prost",
+ "prost-types",
+ "serde",
+ "tendermint-proto 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus)",
+ "tonic",
 ]
 
 [[package]]
@@ -1234,8 +1353,7 @@ dependencies = [
  "prost",
  "prost-types",
  "serde",
- "tendermint-proto",
- "tonic",
+ "tendermint-proto 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?rev=95c52476bc37927218374f94ac8e2a19bd35bec9)",
 ]
 
 [[package]]
@@ -1250,7 +1368,7 @@ dependencies = [
  "prost",
  "ripemd160",
  "sha2 0.9.9",
- "sha3",
+ "sha3 0.9.1",
  "sp-std",
 ]
 
@@ -1268,6 +1386,44 @@ checksum = "e14ddfc70884202db2244c223200c204c2bda1bc6e0998d11b5e024d657209e6"
 dependencies = [
  "unicode-bidi",
  "unicode-normalization",
+]
+
+[[package]]
+name = "impl-codec"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ba6a270039626615617f3f36d15fc827041df3b78c439da2cadfa47455a77f2f"
+dependencies = [
+ "parity-scale-codec",
+]
+
+[[package]]
+name = "impl-rlp"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f28220f89297a075ddc7245cd538076ee98b01f2a9c23a53a4f1105d5a322808"
+dependencies = [
+ "rlp",
+]
+
+[[package]]
+name = "impl-serde"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4551f042f3438e64dbd6226b20527fc84a6e1fe65688b58746a2f53623f25f5c"
+dependencies = [
+ "serde",
+]
+
+[[package]]
+name = "impl-trait-for-tuples"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "11d7a9f6330b71fea57921c9b61c47ee6e84f72d394754eff6163ae67e7395eb"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]
@@ -1523,7 +1679,7 @@ checksum = "e5ce46fe64a9d73be07dcbe690a38ce1b293be448fd8ce1e6c1b8062c9f72c6a"
 [[package]]
 name = "namada"
 version = "0.7.1"
-source = "git+https://github.com/anoma/namada?rev=eth-bridge-integration#159eddc724527f441c9ec439d659b189dec5d6e9"
+source = "git+https://github.com/anoma/namada?rev=08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7#08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7"
 dependencies = [
  "ark-bls12-381",
  "ark-serialize",
@@ -1533,15 +1689,18 @@ dependencies = [
  "clru",
  "derivative",
  "ed25519-consensus",
+ "ethabi",
+ "eyre",
  "ferveo-common",
  "hex",
- "ibc",
- "ibc-proto",
+ "ibc 0.12.0 (git+https://github.com/heliaxdev/ibc-rs?branch=bat/abciplus)",
+ "ibc-proto 0.16.0 (git+https://github.com/heliaxdev/ibc-rs?branch=bat/abciplus)",
  "ics23",
  "itertools",
  "libsecp256k1",
  "loupe",
- "namada_proof_of_stake",
+ "namada_proof_of_stake 0.7.1 (git+https://github.com/anoma/namada?rev=08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7)",
+ "num-rational",
  "parity-wasm",
  "proptest",
  "prost",
@@ -1555,9 +1714,10 @@ dependencies = [
  "sha2 0.9.9",
  "sparse-merkle-tree",
  "tempfile",
- "tendermint",
- "tendermint-proto",
+ "tendermint 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus)",
+ "tendermint-proto 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus)",
  "thiserror",
+ "tiny-keccak",
  "tonic-build",
  "tracing",
  "wasmer",
@@ -1571,9 +1731,47 @@ dependencies = [
 ]
 
 [[package]]
+name = "namada"
+version = "0.7.1"
+source = "git+https://github.com/anoma/namada#159eddc724527f441c9ec439d659b189dec5d6e9"
+dependencies = [
+ "ark-bls12-381",
+ "ark-serialize",
+ "bech32",
+ "borsh",
+ "chrono",
+ "clru",
+ "derivative",
+ "ed25519-consensus",
+ "ferveo-common",
+ "hex",
+ "ibc 0.12.0 (git+https://github.com/heliaxdev/ibc-rs?rev=30b3495ac56c6c37c99bc69ef9f2e84c3309c6cc)",
+ "ibc-proto 0.16.0 (git+https://github.com/heliaxdev/ibc-rs?rev=30b3495ac56c6c37c99bc69ef9f2e84c3309c6cc)",
+ "ics23",
+ "itertools",
+ "libsecp256k1",
+ "namada_proof_of_stake 0.7.1 (git+https://github.com/anoma/namada)",
+ "prost",
+ "prost-types",
+ "rand",
+ "rust_decimal",
+ "serde",
+ "serde_json",
+ "sha2 0.9.9",
+ "sparse-merkle-tree",
+ "tendermint 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?rev=95c52476bc37927218374f94ac8e2a19bd35bec9)",
+ "tendermint-proto 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?rev=95c52476bc37927218374f94ac8e2a19bd35bec9)",
+ "thiserror",
+ "tonic-build",
+ "tracing",
+ "wasmparser 0.83.0",
+ "zeroize",
+]
+
+[[package]]
 name = "namada_macros"
 version = "0.7.1"
-source = "git+https://github.com/anoma/namada?rev=eth-bridge-integration#159eddc724527f441c9ec439d659b189dec5d6e9"
+source = "git+https://github.com/anoma/namada?rev=08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7#08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7"
 dependencies = [
  "quote",
  "syn",
@@ -1582,7 +1780,7 @@ dependencies = [
 [[package]]
 name = "namada_proof_of_stake"
 version = "0.7.1"
-source = "git+https://github.com/anoma/namada?rev=eth-bridge-integration#159eddc724527f441c9ec439d659b189dec5d6e9"
+source = "git+https://github.com/anoma/namada?rev=08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7#08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7"
 dependencies = [
  "borsh",
  "proptest",
@@ -1590,14 +1788,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "namada_proof_of_stake"
+version = "0.7.1"
+source = "git+https://github.com/anoma/namada#159eddc724527f441c9ec439d659b189dec5d6e9"
+dependencies = [
+ "borsh",
+ "thiserror",
+]
+
+[[package]]
 name = "namada_tests"
 version = "0.7.1"
-source = "git+https://github.com/anoma/namada?rev=eth-bridge-integration#159eddc724527f441c9ec439d659b189dec5d6e9"
+source = "git+https://github.com/anoma/namada?rev=08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7#08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7"
 dependencies = [
  "chrono",
  "concat-idents",
  "derivative",
- "namada",
+ "namada 0.7.1 (git+https://github.com/anoma/namada?rev=08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7)",
  "namada_vm_env",
  "prost",
  "serde_json",
@@ -1611,7 +1818,7 @@ dependencies = [
 [[package]]
 name = "namada_tx_prelude"
 version = "0.7.1"
-source = "git+https://github.com/anoma/namada?rev=eth-bridge-integration#159eddc724527f441c9ec439d659b189dec5d6e9"
+source = "git+https://github.com/anoma/namada?rev=08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7#08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7"
 dependencies = [
  "namada_vm_env",
  "sha2 0.10.6",
@@ -1620,21 +1827,12 @@ dependencies = [
 [[package]]
 name = "namada_vm_env"
 version = "0.7.1"
-source = "git+https://github.com/anoma/namada?rev=eth-bridge-integration#159eddc724527f441c9ec439d659b189dec5d6e9"
+source = "git+https://github.com/anoma/namada?rev=08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7#08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7"
 dependencies = [
  "borsh",
  "hex",
- "namada",
+ "namada 0.7.1 (git+https://github.com/anoma/namada?rev=08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7)",
  "namada_macros",
-]
-
-[[package]]
-name = "namada_vp_prelude"
-version = "0.7.1"
-source = "git+https://github.com/anoma/namada?rev=eth-bridge-integration#159eddc724527f441c9ec439d659b189dec5d6e9"
-dependencies = [
- "namada_vm_env",
- "sha2 0.10.6",
 ]
 
 [[package]]
@@ -1666,6 +1864,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "225d3389fb3509a24c93f5c29eb6bde2586b98d9f016636dff58d7c6f7569cd9"
 dependencies = [
  "autocfg",
+ "num-traits",
+]
+
+[[package]]
+name = "num-rational"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0638a1c9d0a3c0914158145bc76cff373a75a627e6ecbfb71cbe6f453a5a19b0"
+dependencies = [
+ "autocfg",
+ "num-bigint",
+ "num-integer",
  "num-traits",
 ]
 
@@ -1729,6 +1939,32 @@ name = "opaque-debug"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "624a8340c38c1b80fd549087862da4ba43e08858af025b236e509b6649fc13d5"
+
+[[package]]
+name = "parity-scale-codec"
+version = "3.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "366e44391a8af4cfd6002ef6ba072bae071a96aafca98d7d448a34c5dca38b6a"
+dependencies = [
+ "arrayvec",
+ "bitvec",
+ "byte-slice-cast",
+ "impl-trait-for-tuples",
+ "parity-scale-codec-derive",
+ "serde",
+]
+
+[[package]]
+name = "parity-scale-codec-derive"
+version = "3.1.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9299338969a3d2f491d65f140b00ddec470858402f888af98e8642fb5e8965cd"
+dependencies = [
+ "proc-macro-crate 1.2.1",
+ "proc-macro2",
+ "quote",
+ "syn",
+]
 
 [[package]]
 name = "parity-wasm"
@@ -1834,11 +2070,35 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "eb9f9e6e233e5c4a35559a617bf40a4ec447db2e84c20b55a6f83167b7e57872"
 
 [[package]]
+name = "primitive-types"
+version = "0.11.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e28720988bff275df1f51b171e1b2a18c30d194c4d2b61defdacecd625a5d94a"
+dependencies = [
+ "fixed-hash",
+ "impl-codec",
+ "impl-rlp",
+ "impl-serde",
+ "uint",
+]
+
+[[package]]
 name = "proc-macro-crate"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1d6ea3c4595b96363c13943497db34af4460fb474a95c43f4446ad341b8c9785"
 dependencies = [
+ "toml",
+]
+
+[[package]]
+name = "proc-macro-crate"
+version = "1.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "eda0fc3b0fb7c975631757e14d9049da17374063edb6ebbcbc54d880d4fe94e9"
+dependencies = [
+ "once_cell",
+ "thiserror",
  "toml",
 ]
 
@@ -1998,6 +2258,12 @@ checksum = "bbe448f377a7d6961e30f5955f9b8d106c3f5e449d493ee1b125c1d43c2b5179"
 dependencies = [
  "proc-macro2",
 ]
+
+[[package]]
+name = "radium"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dc33ff2d4973d518d823d61aa239014831e521c75da58e3df4840d3f47749d09"
 
 [[package]]
 name = "rand"
@@ -2201,6 +2467,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "rlp"
+version = "0.5.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "999508abb0ae792aabed2460c45b89106d97fe4adac593bdaef433c2605847b5"
+dependencies = [
+ "bytes",
+ "rustc-hex",
+]
+
+[[package]]
 name = "rust_decimal"
 version = "1.26.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2222,6 +2498,12 @@ name = "rustc-hash"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "08d43f7aa6b08d49f382cde6a7982047c3426db949b1424bc4b7ec9ae12c6ce2"
+
+[[package]]
+name = "rustc-hex"
+version = "2.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3e75f6a532d0fd9f7f13144f392b6ad56a32696bfcd9c78f797f16bbb6f072d6"
 
 [[package]]
 name = "rustc_version"
@@ -2442,6 +2724,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "sha3"
+version = "0.10.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e2904bea16a1ae962b483322a1c7b81d976029203aea1f461e51cd7705db7ba9"
+dependencies = [
+ "digest 0.10.5",
+ "keccak",
+]
+
+[[package]]
 name = "sharded-slab"
 version = "0.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2519,6 +2811,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a8f112729512f8e442d81f95a8a7ddf2b7c6b8a1a6f509a95864142b30cab2d3"
 
 [[package]]
+name = "static_assertions"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a2eb9349b6444b326872e140eb1cf5e7c522154d69e7a0ffb0fb81c06b37543f"
+
+[[package]]
 name = "subtle"
 version = "2.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2563,6 +2861,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "tap"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "55937e1799185b12863d447f42597ed69d9928686b8d88a1df17376a097d8369"
+
+[[package]]
 name = "target-lexicon"
 version = "0.12.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2580,6 +2884,34 @@ dependencies = [
  "redox_syscall",
  "remove_dir_all",
  "winapi",
+]
+
+[[package]]
+name = "tendermint"
+version = "0.23.5"
+source = "git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus#2e9e0d058a68e2534974ff7d22b9058d4ebda3be"
+dependencies = [
+ "async-trait",
+ "bytes",
+ "ed25519",
+ "ed25519-dalek",
+ "flex-error",
+ "futures",
+ "num-traits",
+ "once_cell",
+ "prost",
+ "prost-types",
+ "serde",
+ "serde_bytes",
+ "serde_json",
+ "serde_repr",
+ "sha2 0.9.9",
+ "signature",
+ "subtle",
+ "subtle-encoding",
+ "tendermint-proto 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus)",
+ "time 0.3.14",
+ "zeroize",
 ]
 
 [[package]]
@@ -2607,9 +2939,22 @@ dependencies = [
  "signature",
  "subtle",
  "subtle-encoding",
- "tendermint-proto",
+ "tendermint-proto 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?rev=95c52476bc37927218374f94ac8e2a19bd35bec9)",
  "time 0.3.14",
  "zeroize",
+]
+
+[[package]]
+name = "tendermint-config"
+version = "0.23.5"
+source = "git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus#2e9e0d058a68e2534974ff7d22b9058d4ebda3be"
+dependencies = [
+ "flex-error",
+ "serde",
+ "serde_json",
+ "tendermint 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus)",
+ "toml",
+ "url",
 ]
 
 [[package]]
@@ -2620,9 +2965,22 @@ dependencies = [
  "flex-error",
  "serde",
  "serde_json",
- "tendermint",
+ "tendermint 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?rev=95c52476bc37927218374f94ac8e2a19bd35bec9)",
  "toml",
  "url",
+]
+
+[[package]]
+name = "tendermint-light-client-verifier"
+version = "0.23.5"
+source = "git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus#2e9e0d058a68e2534974ff7d22b9058d4ebda3be"
+dependencies = [
+ "derive_more",
+ "flex-error",
+ "serde",
+ "tendermint 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus)",
+ "tendermint-rpc 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus)",
+ "time 0.3.14",
 ]
 
 [[package]]
@@ -2633,8 +2991,25 @@ dependencies = [
  "derive_more",
  "flex-error",
  "serde",
- "tendermint",
- "tendermint-rpc",
+ "tendermint 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?rev=95c52476bc37927218374f94ac8e2a19bd35bec9)",
+ "tendermint-rpc 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?rev=95c52476bc37927218374f94ac8e2a19bd35bec9)",
+ "time 0.3.14",
+]
+
+[[package]]
+name = "tendermint-proto"
+version = "0.23.5"
+source = "git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus#2e9e0d058a68e2534974ff7d22b9058d4ebda3be"
+dependencies = [
+ "bytes",
+ "flex-error",
+ "num-derive",
+ "num-traits",
+ "prost",
+ "prost-types",
+ "serde",
+ "serde_bytes",
+ "subtle-encoding",
  "time 0.3.14",
 ]
 
@@ -2658,6 +3033,30 @@ dependencies = [
 [[package]]
 name = "tendermint-rpc"
 version = "0.23.5"
+source = "git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus#2e9e0d058a68e2534974ff7d22b9058d4ebda3be"
+dependencies = [
+ "bytes",
+ "flex-error",
+ "getrandom",
+ "peg",
+ "pin-project",
+ "serde",
+ "serde_bytes",
+ "serde_json",
+ "subtle-encoding",
+ "tendermint 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus)",
+ "tendermint-config 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus)",
+ "tendermint-proto 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus)",
+ "thiserror",
+ "time 0.3.14",
+ "url",
+ "uuid",
+ "walkdir",
+]
+
+[[package]]
+name = "tendermint-rpc"
+version = "0.23.5"
 source = "git+https://github.com/heliaxdev/tendermint-rs?rev=95c52476bc37927218374f94ac8e2a19bd35bec9#95c52476bc37927218374f94ac8e2a19bd35bec9"
 dependencies = [
  "bytes",
@@ -2669,9 +3068,9 @@ dependencies = [
  "serde_bytes",
  "serde_json",
  "subtle-encoding",
- "tendermint",
- "tendermint-config",
- "tendermint-proto",
+ "tendermint 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?rev=95c52476bc37927218374f94ac8e2a19bd35bec9)",
+ "tendermint-config 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?rev=95c52476bc37927218374f94ac8e2a19bd35bec9)",
+ "tendermint-proto 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?rev=95c52476bc37927218374f94ac8e2a19bd35bec9)",
  "thiserror",
  "time 0.3.14",
  "url",
@@ -2682,7 +3081,7 @@ dependencies = [
 [[package]]
 name = "tendermint-testgen"
 version = "0.23.5"
-source = "git+https://github.com/heliaxdev/tendermint-rs?rev=95c52476bc37927218374f94ac8e2a19bd35bec9#95c52476bc37927218374f94ac8e2a19bd35bec9"
+source = "git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus#2e9e0d058a68e2534974ff7d22b9058d4ebda3be"
 dependencies = [
  "ed25519-dalek",
  "gumdrop",
@@ -2690,7 +3089,7 @@ dependencies = [
  "serde_json",
  "simple-error",
  "tempfile",
- "tendermint",
+ "tendermint 0.23.5 (git+https://github.com/heliaxdev/tendermint-rs?branch=bat/abciplus)",
  "time 0.3.14",
 ]
 
@@ -2707,14 +3106,14 @@ dependencies = [
 
 [[package]]
 name = "test_runner"
-version = "0.1.0"
-source = "git+https://github.com/anoma/test_runner.git#ef459d5350c1212e8609aa331dc8d67bf097f2d7"
+version = "0.2.0-dev"
+source = "git+https://github.com/anoma/test_runner.git?rev=14c70ebb19ccc2e773bb965e47a9a4507094aa1d#14c70ebb19ccc2e773bb965e47a9a4507094aa1d"
 dependencies = [
  "borsh",
  "eyre",
  "fs_extra",
  "hex",
- "namada",
+ "namada 0.7.1 (git+https://github.com/anoma/namada)",
  "rand",
  "retry",
  "tempfile",
@@ -2776,6 +3175,15 @@ name = "time-macros"
 version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "42657b1a6f4d817cda8e7a0ace261fe0cc946cf3a80314390b22cc61ae080792"
+
+[[package]]
+name = "tiny-keccak"
+version = "2.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2c9d3793400a45f954c52e73d068316d76b6f4e36977e3fcebb13a2721e80237"
+dependencies = [
+ "crunchy",
+]
 
 [[package]]
 name = "tinyvec"
@@ -3018,12 +3426,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "59547bce71d9c38b83d9c0e92b6066c4253371f15005def0c30d9657f50c7642"
 
 [[package]]
-name = "tx_example"
+name = "tx_modify_erc20_supply"
 version = "0.0.0"
 dependencies = [
  "borsh",
  "eyre",
  "getrandom",
+ "namada 0.7.1 (git+https://github.com/anoma/namada?rev=08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7)",
  "namada_tests",
  "namada_tx_prelude",
  "shared",
@@ -3041,6 +3450,18 @@ name = "ucd-trie"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9e79c4d996edb816c91e4308506774452e55e95c3c9de07b6729e17e15a5ef81"
+
+[[package]]
+name = "uint"
+version = "0.9.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a45526d29728d135c2900b0d30573fe3ee79fceb12ef534c7bb30e810a91b601"
+dependencies = [
+ "byteorder",
+ "crunchy",
+ "hex",
+ "static_assertions",
+]
 
 [[package]]
 name = "unicode-bidi"
@@ -3103,21 +3524,6 @@ name = "version_check"
 version = "0.9.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "49874b5167b65d7193b8aba1567f5c7d93d001cafc34600cee003eda787e483f"
-
-[[package]]
-name = "vp_example"
-version = "0.0.0"
-dependencies = [
- "borsh",
- "eyre",
- "getrandom",
- "namada",
- "namada_tests",
- "namada_vp_prelude",
- "rand",
- "shared",
- "wee_alloc",
-]
 
 [[package]]
 name = "wait-timeout"
@@ -3577,6 +3983,15 @@ name = "windows_x86_64_msvc"
 version = "0.36.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c811ca4a8c853ef420abd8592ba53ddbbac90410fab6903b3e79972a631f7680"
+
+[[package]]
+name = "wyz"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "30b31594f29d27036c383b53b59ed3476874d518f0efb151b27a4c275141390e"
+dependencies = [
+ "tap",
+]
 
 [[package]]
 name = "zeroize"

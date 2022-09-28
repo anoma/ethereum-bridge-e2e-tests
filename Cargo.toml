@@ -14,14 +14,6 @@ borsh-schema-derive-internal = {git = "https://github.com/heliaxdev/borsh-rs.git
 # TODO: later versions of chrono pull in wasm-bindgen, which must be avoided, workaround by sticking with v0.4.19 for the moment
 chrono = {git = "https://github.com/chronotope/chrono.git", rev = "v0.4.19"}
 
-[patch."https://github.com/anoma/namada"]
-# specify the specific version of Namada being worked against here
-# https://stackoverflow.com/a/72261235/2387626
-namada_tx_prelude = {git = "https://github.com/anoma/namada?rev=eth-bridge-integration"}
-namada_vp_prelude = {git = "https://github.com/anoma/namada?rev=eth-bridge-integration"}
-namada = {git = "https://github.com/anoma/namada?rev=eth-bridge-integration"}
-namada_tests = {git = "https://github.com/anoma/namada?rev=eth-bridge-integration"}
-
 [profile.dev]
 # smaller and faster wasm (https://rustwasm.github.io/book/reference/code-size.html#compiling-with-link-time-optimizations-lto)
 lto = true

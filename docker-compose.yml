@@ -28,6 +28,6 @@ services:
       - /bin/bash
       - -c
       - |
-        tests/example_test
+        tests/attempt_modify_wdai_supply
     depends_on:
       - ledger

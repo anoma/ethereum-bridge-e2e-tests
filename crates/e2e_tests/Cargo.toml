@@ -6,12 +6,12 @@ version = "0.0.0"
 edition = "2021"
 
 [[bin]]
-name = "example_test"
-path = "src/bin/example_test/main.rs"
+name = "attempt_modify_wdai_supply"
+path = "src/bin/attempt_modify_wdai_supply/main.rs"
 
 [dependencies]
-test_runner = { git = "https://github.com/anoma/test_runner.git" }
+test_runner = { git = "https://github.com/anoma/test_runner.git", rev = "14c70ebb19ccc2e773bb965e47a9a4507094aa1d" }
 shared = {path = "../shared" }
-namada = {git = "https://github.com/anoma/namada", features = ["rand"]}
+namada = {git = "https://github.com/anoma/namada", rev = "08b4f5d6ab5e237b41f881aa2a9f9a35e99877a7", features = ["rand"]}
 rand = "0.8"
 eyre = "0.6.8"
