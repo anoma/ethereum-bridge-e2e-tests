@@ -31,6 +31,7 @@ services:
       - /bin/bash
       - -c
       - |
-        tests/attempt_modify_wdai_supply
+        tests/attempt_modify_wdai_supply && \
+        tests/submit_wdai_transfer
     depends_on:
       - ledger
