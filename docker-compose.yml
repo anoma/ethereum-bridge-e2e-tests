@@ -3,9 +3,12 @@ services:
   ledger:
     build: .
     platform: linux/amd64
+    environment:
+      - ANOMA_LEDGER__ETHEREUM__MODE=EventsEndpoint
     ports:
       - '127.0.0.1:8123:8123'
       - '127.0.0.1:26657:26657'
+      - '127.0.0.1:3030:3030'
   adhoc:
     build: .
     platform: linux/amd64
