@@ -7,7 +7,8 @@ mod test;
 
 const TENDERMINT_RPC_ENV_VAR: &str = "ANOMA_LEDGER_ADDRESS";
 
-fn main() {
+#[tokio::main]
+async fn main() {
     chain::join();
 
     let receiver_implicit_alias = wallet::random_alias("receiver-implicit");
@@ -18,7 +19,7 @@ fn main() {
 
     client.get_xan_from_faucet(&receiver_implicit_alias);
 
-    match test::run(&client) {
+    match test::run(&client).await {
         Ok(passed) => {
             println!("Test passed!");
             if passed {
