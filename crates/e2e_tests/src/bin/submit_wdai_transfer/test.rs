@@ -14,7 +14,11 @@ pub(crate) async fn run(_client: &client::Client) -> Result<bool> {
     .expect("Receiver address must be decodeable!");
     let asset = DAI_ERC20_ETH_ADDRESS;
 
-    ethereum_events_endpoint::send_fake_transfer_to_namada(amount, receiver, asset, None).await?;
+    let client = ethereum_events_endpoint::Client::new("http://ledger:3030");
+
+    client
+        .send_fake_transfer_to_namada(amount, receiver, asset, None)
+        .await?;
 
     Ok(true)
 }
