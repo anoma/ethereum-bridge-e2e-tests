@@ -2521,8 +2521,7 @@ dependencies = [
 [[package]]
 name = "tendermint-testgen"
 version = "0.23.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1514e269ebd2dd1f99e931ac99d96eb9b521a0820d9f03e9b56ac724ca456f19"
+source = "git+https://github.com/heliaxdev/tendermint-rs.git?rev=bc0b6ac47b3bfc1ee8b944341b654b867b3b5d0b#bc0b6ac47b3bfc1ee8b944341b654b867b3b5d0b"
 dependencies = [
  "ed25519-dalek",
  "gumdrop",
