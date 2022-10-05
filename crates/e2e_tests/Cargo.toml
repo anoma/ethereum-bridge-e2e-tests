@@ -14,7 +14,7 @@ name = "submit_wdai_transfer"
 path = "src/bin/submit_wdai_transfer/main.rs"
 
 [dependencies]
-test_runner = { git = "https://github.com/anoma/test_runner", rev = "50afea099a6d74fea0b2ffd2fce30b7ee5396696" }
+test_runner = { git = "https://github.com/anoma/e2e-test-helpers", rev = "50afea099a6d74fea0b2ffd2fce30b7ee5396696" }
 shared = {path = "../shared" }
 namada = {git = "https://github.com/anoma/namada", rev = "a70eafb2a724f014eda0323a09ccb80af994cd8c", features = ["rand", "testing"]}
 rand = "0.8"
