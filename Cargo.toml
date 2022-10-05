@@ -27,6 +27,12 @@ ibc-proto = {git = "https://github.com/heliaxdev/ibc-rs.git", rev = "451ff75591d
 # https://stackoverflow.com/a/72261235/2387626
 namada = {git = "https://github.com/anoma/namada?branch=eth-bridge-integration", rev = "f3a87098fbba9d8708f08b5ddec403945b555ea2"}
 
+[patch."https://github.com/anoma/e2e-test-helpers"]
+# specify the specific version of Namada being worked against here
+# https://stackoverflow.com/a/72261235/2387626
+namada_cli = {git = "https://github.com/anoma/e2e-test-helpers?branch=eth-bridge-integration", rev = "c995e343dc34037add36be961ea568d950ba90ff"}
+ethereum_bridge = {git = "https://github.com/anoma/e2e-test-helpers?branch=eth-bridge-integration", rev = "c995e343dc34037add36be961ea568d950ba90ff"}
+
 [profile.dev]
 # smaller and faster wasm (https://rustwasm.github.io/book/reference/code-size.html#compiling-with-link-time-optimizations-lto)
 lto = true
