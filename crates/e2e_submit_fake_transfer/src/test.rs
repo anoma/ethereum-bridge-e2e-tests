@@ -3,12 +3,17 @@ use crate::{configuration, utils::step::StepResult};
 use eyre::{eyre, Context, Result};
 use namada::types::address::Address;
 use namada::types::ethereum_events::EthAddress;
-use namada::types::{ethereum_events::testing::DAI_ERC20_ETH_ADDRESS, token::Amount};
+use namada::types::token::Amount;
 use namada_cli::{namadac, namadaw, Output};
 use std::time::Duration;
 
 const ETH_BRIDGE_ADDR: &str =
     "atest1v9hx7w36g42ysgzzwf5kgem9ypqkgerjv4ehxgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpq8f99ew";
+
+/// We duplicate this from `ethereum_events::testing::DAI_ERC20_ETH_ADDRESS` in order to avoid having to use the `namada/testing` feature
+pub const DAI_ERC20_ETH_ADDRESS: EthAddress = EthAddress([
+    107, 23, 84, 116, 232, 144, 148, 196, 77, 169, 139, 149, 78, 237, 234, 196, 149, 39, 29, 15,
+]);
 
 pub async fn setup(chain_id: &str, network_configs_server: Option<&str>) -> Result<TestRunner> {
     let mut runner = crate::utils::TestRunner::default();

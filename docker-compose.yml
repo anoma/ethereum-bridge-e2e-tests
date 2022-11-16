@@ -4,7 +4,7 @@ services:
     build: .
     platform: linux/amd64
     environment:
-      ANOMA_LEDGER__ETHEREUM__MODE: EventsEndpoint
+      ANOMA_LEDGER__ETHEREUM_BRIDGE__MODE: EventsEndpoint
     ports:
       - '127.0.0.1:8123:8123'
       - '127.0.0.1:26657:26657'
@@ -32,7 +32,6 @@ services:
       - -c
       - |
         export ANOMA_CHAIN_ID="$$(cat chain-id)"
-        tests/e2e_submit_fake_transfer && \
-        tests/attempt_modify_wdai_supply
+        tests/e2e_submit_fake_transfer
     depends_on:
       - ledger

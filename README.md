@@ -2,26 +2,17 @@
 
 A workspace for end-to-end tests for Namada's Ethereum bridge.
 
-## Tests
+## Structure
 
-### Unit and integration
-
-```shell
-cargo test
-```
-
-### End-to-end
-
-End-to-end tests are binaries under `crates/e2e_tests/src/bin`. It should be possible to run them against any Namada chain which is running the Ethereum bridge in the appropriate mode. e.g. some tests may require validators to be exposing an endpoint for direct submission of fake Ethereum bridge events, while other tests may work against a Namada chain and a real EVM chain which has the bridge deployed.
+Tests are built as self-contained binaries that should be possible to run against any compatible Namada node. Some tests may require the node is exposing an endpoint for direct submission of fake Ethereum bridge events, while other tests may work against a Namada chain and a real EVM chain which has the bridge deployed
 
 #### Running locally using Docker Compose
 
-> :warning: This method of running locally may work very slowly on Apple Silicon, due to emulation of the `linux/amd64` architecture
-
-To run them against a preconfigured network:
+To run all end-to-end tests against a preconfigured chain:
 
 ```shell
-make docker  # should be run any time test runners or wasms change
+make docker
+docker compose down  # to ensure any stale containers are removed
 docker compose up
 ```
 

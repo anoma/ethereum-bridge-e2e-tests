@@ -1,8 +1,7 @@
 # test runner image
 # TODO: this image should be one built under the Anoma GitHub organization
-FROM ghcr.io/james-chf/devchain-container:ethbridge-experimental-2022-10-04
+FROM ghcr.io/james-chf/devchain-container:ethbridge-2022-11-16-fixed-events-endpoint
 ENV RUST_BACKTRACE=full
-COPY build/debug/ wasm/
 RUN ./init_chain.sh
 
 COPY build/tests/ tests/
