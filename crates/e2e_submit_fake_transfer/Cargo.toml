@@ -4,7 +4,7 @@ version = "0.0.0"
 edition = "2021"
 
 [dependencies]
-clap = { version = "4.0", features = ["derive"] }
+clap = { version = "4.1", features = ["derive"] }
 colored = "2.0.0"
 config = { version = "0.13", features = ["toml"] }
 ethereum_bridge = { git = "https://github.com/anoma/e2e-test-helpers", rev = "99559790cde27953f60e31023d8df670f7b561ff" }
